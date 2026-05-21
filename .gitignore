@@ -1,0 +1,11 @@
+data/train.txt
+data/processed/
+results/
+__pycache__/
+*.pyc
+*.pth
+.ipynb_checkpoints/
+.idea/
+.vscode/
+*.egg-info/
+.claude/

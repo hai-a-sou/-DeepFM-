@@ -1,0 +1,51 @@
+# DeepFM CTR Prediction — Default Configuration
+
+data:
+  raw_path: "data/train.txt"
+  processed_dir: "data/processed"
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+  chunk_size: 500000
+  random_seed: 42
+
+preprocessing:
+  numerical:
+    log_transform: true
+    standardize: true
+    missing_fill: 0.0
+  categorical:
+    min_frequency: 10
+    unknown_token: "<UNK>"
+    max_vocab_size: 500000
+
+model:
+  embed_dim: 16
+  mlp_dims: [512, 256, 128]
+  dropout: 0.2
+  use_batch_norm: true
+
+training:
+  batch_size: 4096
+  learning_rate: 0.001
+  weight_decay: 1.0e-6
+  max_epochs: 100
+  early_stopping_patience: 3
+  early_stopping_metric: "auc"
+  optimizer: "adam"
+  lr_scheduler:
+    type: "reduce_on_plateau"
+    factor: 0.5
+    patience: 1
+
+search:
+  embed_dims: [4, 8, 12, 16, 24, 32]
+
+baselines:
+  xgboost:
+    n_estimators: 500
+    max_depth: 8
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    early_stopping_rounds: 20
