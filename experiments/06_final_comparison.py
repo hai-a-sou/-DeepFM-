@@ -16,7 +16,6 @@ from deepfm_ctr.training.trainer import Trainer
 from deepfm_ctr.utils.reproducibility import seed_everything, get_device
 from deepfm_ctr.visualization.plotter import plot_roc_curves, plot_metric_comparison
 
-
 def load_model_and_predict(model_class, checkpoint_name, config, field_dims, test_loader, device, **kwargs):
     """Load a trained model from checkpoint and get test predictions."""
     model = model_class(field_dims=field_dims, num_numerical=13, **kwargs).to(device)
